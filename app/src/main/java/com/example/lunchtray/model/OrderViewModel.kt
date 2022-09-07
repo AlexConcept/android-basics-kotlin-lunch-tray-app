@@ -93,7 +93,7 @@ class OrderViewModel : ViewModel() {
      */
     fun setSide(side: String) {
         if (_side != null) {
-            previousEntreePrice = _side.value!!.price
+            previousSidePrice = _side.value!!.price
         }
         if (_subtotal != null) {
             _subtotal.value = _subtotal.value!!.minus(previousSidePrice)
@@ -116,10 +116,10 @@ class OrderViewModel : ViewModel() {
     fun setAccompaniment(accompaniment: String) {
 
         if (_accompaniment != null) {
-            previousEntreePrice = side.value!!.price
+            previousAccompanimentPrice = _accompaniment.value!!.price
         }
         if (_subtotal != null) {
-            _subtotal.value = _subtotal.value!!.minus(previousEntreePrice)
+            _subtotal.value = _subtotal.value!!.minus(previousAccompanimentPrice)
         }
         _accompaniment.value = menuItems[accompaniment]
         updateSubtotal(_accompaniment.value!!.price)
@@ -140,6 +140,14 @@ class OrderViewModel : ViewModel() {
      * Update subtotal value.
      */
     private fun updateSubtotal(itemPrice: Double) {
+
+        if (_subtotal.value != null) {
+            _subtotal.value = _subtotal.value!! + itemPrice
+        } else {
+            _subtotal.value = itemPrice
+        }
+        calculateTaxAndTotal()
+
         // TODO: if _subtotal.value is not null, update it to reflect the price of the recently
         //  added item.
         //  Otherwise, set _subtotal.value to equal the price of the item.
@@ -151,6 +159,8 @@ class OrderViewModel : ViewModel() {
      * Calculate tax and update total.
      */
     fun calculateTaxAndTotal() {
+        _tax.value = taxRate * _subtotal.value!!
+        _total.value = _subtotal.value!! + taxRate
         // TODO: set _tax.value based on the subtotal and the tax rate.
         // TODO: set the total based on the subtotal and _tax.value.
     }
@@ -159,6 +169,15 @@ class OrderViewModel : ViewModel() {
      * Reset all values pertaining to the order.
      */
     fun resetOrder() {
-        // TODO: Reset all values associated with an order
+        previousEntreePrice = 0.00
+        previousSidePrice = 0.00
+        previousAccompanimentPrice = 0.00
+        _entree.value = null
+        _side.value = null
+        _accompaniment.value = null
+        _subtotal.value = null
+        _total.value = null
+        _tax.value = null
+         // TODO: Reset all values associated with an order
     }
 }
