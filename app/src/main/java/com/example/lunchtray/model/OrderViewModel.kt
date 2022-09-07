@@ -92,6 +92,15 @@ class OrderViewModel : ViewModel() {
      * Set the side for the order.
      */
     fun setSide(side: String) {
+        if (_side != null) {
+            previousEntreePrice = _side.value!!.price
+        }
+        if (_subtotal != null) {
+            _subtotal.value = _subtotal.value!!.minus(previousSidePrice)
+        }
+        _side.value = menuItems[side]
+        updateSubtotal(_side.value!!.price)
+
         // TODO: if _side.value is not null, set the previous side price to the current side price.
 
         // TODO: if _subtotal.value is not null subtract the previous side price from the current
@@ -105,6 +114,16 @@ class OrderViewModel : ViewModel() {
      * Set the accompaniment for the order.
      */
     fun setAccompaniment(accompaniment: String) {
+
+        if (_accompaniment != null) {
+            previousEntreePrice = side.value!!.price
+        }
+        if (_subtotal != null) {
+            _subtotal.value = _subtotal.value!!.minus(previousEntreePrice)
+        }
+        _accompaniment.value = menuItems[accompaniment]
+        updateSubtotal(_accompaniment.value!!.price)
+
         // TODO: if _accompaniment.value is not null, set the previous accompaniment price to the
         //  current accompaniment price.
 
