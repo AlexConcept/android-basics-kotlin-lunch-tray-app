@@ -69,8 +69,14 @@ class OrderViewModel : ViewModel() {
      * Set the entree for the order.
      */
     fun setEntree(entree: String) {
-        previousEntreePrice = _entree.value?.price!!
-        _subtotal.value = _subtotal.value?.minus(previousEntreePrice)
+        if (_entree.value != null) {
+            previousEntreePrice = _entree.value!!.price
+        }
+        if (_subtotal.value != null) {
+            _subtotal.value = _subtotal.value!!.minus(previousEntreePrice)
+        }
+        _entree.value = menuItems[entree]
+        updateSubtotal(_entree.value!!.price)
 
         // TODO: if _entree.value is not null, set the previous entree price to the current
         //  entree price.
