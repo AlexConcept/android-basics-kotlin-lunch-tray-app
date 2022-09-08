@@ -21,6 +21,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.lunchtray.R
 import com.example.lunchtray.databinding.FragmentAccompanimentMenuBinding
 import com.example.lunchtray.model.OrderViewModel
 
@@ -67,6 +69,7 @@ class AccompanimentMenuFragment : Fragment() {
      * Navigate to the checkout fragment.
      */
     fun goToNextScreen() {
+        findNavController().navigate(R.id.action_accompanimentMenuFragment_to_checkoutFragment)
         // TODO: Navigate to the CheckoutFragment
     }
 
@@ -74,6 +77,8 @@ class AccompanimentMenuFragment : Fragment() {
      * Cancel the order and start over.
      */
     fun cancelOrder() {
+        findNavController().navigate(R.id.action_accompanimentMenuFragment_to_startOrderFragment)
+        sharedViewModel.resetOrder()
         // TODO: Reset order in view model
         // TODO: Navigate back to the [StartFragment] to start over
     }

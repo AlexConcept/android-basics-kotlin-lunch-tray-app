@@ -175,9 +175,9 @@ class OrderViewModel : ViewModel() {
         _entree.value = null
         _side.value = null
         _accompaniment.value = null
-        _subtotal.value = null
-        _total.value = null
-        _tax.value = null
+        _subtotal.value = 0.00
+        _total.value = 0.00
+        _tax.value = 0.00
          // TODO: Reset all values associated with an order
     }
 }
