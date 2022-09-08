@@ -20,11 +20,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.lunchtray.R
 import com.example.lunchtray.databinding.FragmentStartOrderBinding
-import com.example.lunchtray.model.OrderViewModel
 
 /**
  * [StartOrderFragment] allows people to click the start button to start an order.
@@ -35,7 +33,6 @@ class StartOrderFragment : Fragment() {
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment.
     private var _binding: FragmentStartOrderBinding? = null
-
 
     // This property is only valid between onCreateView and
     // onDestroyView.

@@ -160,7 +160,7 @@ class OrderViewModel : ViewModel() {
      */
     fun calculateTaxAndTotal() {
         _tax.value = taxRate * _subtotal.value!!
-        _total.value = _subtotal.value!! + taxRate
+        _total.value = _subtotal.value!! + _tax.value!!
         // TODO: set _tax.value based on the subtotal and the tax rate.
         // TODO: set the total based on the subtotal and _tax.value.
     }
@@ -178,6 +178,6 @@ class OrderViewModel : ViewModel() {
         _subtotal.value = 0.00
         _total.value = 0.00
         _tax.value = 0.00
-         // TODO: Reset all values associated with an order
+        // TODO: Reset all values associated with an order
     }
 }

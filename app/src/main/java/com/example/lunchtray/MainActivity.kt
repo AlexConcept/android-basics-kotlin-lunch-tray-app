@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // TODO: Retrieve NavController from the NavHostFragment
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }

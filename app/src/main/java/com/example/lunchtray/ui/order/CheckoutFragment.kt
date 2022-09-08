@@ -44,10 +44,6 @@ class CheckoutFragment : Fragment() {
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     private val sharedViewModel: OrderViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,7 +73,7 @@ class CheckoutFragment : Fragment() {
     fun cancelOrder() {
         findNavController().navigate(R.id.action_checkoutFragment_to_startOrderFragment)
         sharedViewModel.resetOrder()
-    // TODO: Reset order in view model
+        // TODO: Reset order in view model
         // TODO: Navigate back to the [StartFragment] to start over
     }
 
